@@ -18,7 +18,7 @@
                                     <form action="{{route('cart.store')}}" id="cartForm" method="post">
                                         @csrf
                                         <input type="hidden" name="productId" value="{{$product->id}}">
-                                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                                        <input type="hidden" name="user_id" value="{{\Illuminate\Support\Facades\Auth::user()->id}}">
                                         <a class="blog_btn" href="javascript:document.getElementById('cartForm').submit();">Order now</a>
 
                                     </form>

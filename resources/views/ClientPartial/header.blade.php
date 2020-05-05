@@ -62,7 +62,7 @@
                                OPENING HOUR : SUNDAT - FRIDAY  | 9 AM - 10 PM
                            </span>
                         <a href="{{url('cart')}}" class="cart_btn">
-                            CART<i class="fa fa-cart-arrow-down" aria-hidden="true"></i> <span class="cart_quentity">{{\App\Cart::where('user_id',\Illuminate\Support\Facades\Auth::user()->id)->count()}}</span>
+                            CART<i class="fa fa-cart-arrow-down" aria-hidden="true"></i> <span class="cart_quentity">0</span>
                         </a>
                 </div>
                 </div>

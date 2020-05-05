@@ -320,7 +320,7 @@
                         </div>
                         <div class="bg-icon"><i class="os-icon os-icon-wallet-loaded"></i></div>
                         <ul>
-                            <li><a href="users_profile_big.html"><i class="os-icon os-icon-user-male-circle2"></i><span>Profile Details</span></a>
+                            <li><a href="{{url('profile')}}"><i class="os-icon os-icon-user-male-circle2"></i><span>Profile Details</span></a>
                             </li>
                             <form action="{{url('logout')}}" id="logout" method="post">
                                 @csrf

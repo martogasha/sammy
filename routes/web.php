@@ -38,6 +38,7 @@ Route::resource('inventory','InventoryController');
 Route::post('inventoryDelete','InventoryController@deleteInventory');
 Route::resource('order','OrderController');
 Route::resource('customers','CustomerController');
+Route::get('profile','ProfileController@index');
 
 
 

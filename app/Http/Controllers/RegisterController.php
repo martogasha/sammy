@@ -21,7 +21,7 @@ class RegisterController extends Controller
 
         ]);
         if (User::where('role',2)){
-            return redirect(url('/'))->with('success','Register Successfull');
+            return redirect(url('/loginCustom'))->with('success','Register Successfull');
         }
         else{
             return redirect(url('register'))->with('error','Something Went Wrong');
