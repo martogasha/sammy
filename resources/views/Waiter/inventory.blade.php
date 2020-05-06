@@ -1,6 +1,6 @@
-@include('AdminPartials.header')
+@include('WaiterPartial.header')
 @include('flash-message')
-<head><title>Admin Inventory</title>
+<head><title>Waiter Inventory</title>
 
 <div class="content-panel-toggler"><i class="os-icon os-icon-grid-squares-22"></i><span>Sidebar</span></div>
 <div class="content-i">
@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-sm-12 col-xxxl-6">
                 <div class="element-wrapper"><h6 class="element-header">Products in store</h6>
-                    <a class="btn btn-sm btn-secondary" id="createServiceBillButton" type="button" data-toggle="modal" data-target="#CreateInventoryModal" href="#">Create Product</a>
+                    <a class="btn btn-sm btn-secondary" id="createServiceBillButton" type="button" data-toggle="modal" data-target="#processOrderModal" href="#">Process Order</a>
 
                     <br>
                     <br>
@@ -167,14 +167,56 @@
                             </div>
                         </div>
                         <div class="col-sm-12">
+                            <div class="form-group"><label for="">Image</label>
+                                <input type="file" name="image" class="form-control" >
+                            </div>
+                        </div>
+                        <button class="btn-outline-secondary btn-block">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{--Create Process Order Modal--}}
+<div aria-hidden="true" class="onboarding-modal modal fade animated"
+     id="processOrderModal" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-centered" role="document">
+        <div class="modal-content text-center">
+            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                <span class="close-label">Close</span><span
+                    class="os-icon os-icon-close"></span></button>
+            <div class="onboarding-content with-gradient">
+                <h4 class="onboarding-title">Product Details</h4>
+                <form action="{{url('processOrder')}}" method="post">
+                    @csrf
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group"><label for="">Product</label>
+                                <select class="form-control" name="product">
+                                    <option>Select Product</option>
+                                    @foreach($products as $product)
+                                        <option value="{{$product->name}}">{{$product->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
                             <div class="form-group"><label for="">Quantity</label>
-                                <input class="form-control" name="quantity" placeholder="Enter Quantity..." value="">
+                                <select class="form-control" name="quantity">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+
+                                </select>
                             </div>
                         </div>
 
                         <div class="col-sm-12">
-                            <div class="form-group"><label for="">Image</label>
-                                <input type="file" name="image" class="form-control" >
+                            <div class="form-group"><label for="">Price</label>
+                                <input class="form-control" name="price" placeholder="Enter Product Price..." value="">
                             </div>
                         </div>
                         <button class="btn-outline-secondary btn-block">Submit</button>

@@ -19,6 +19,8 @@ class InventoryController extends Controller
            $product->name = $request->input('name');
         $product->desc = $request->input('desc');
         $product->price = $request->input('price');
+        $product->quantity = $request->input('quantity');
+
 
         $file = $request->file('image');
         $extension = $file->getClientOriginalName();

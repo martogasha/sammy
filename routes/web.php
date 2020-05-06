@@ -38,6 +38,16 @@ Route::resource('inventory','InventoryController');
 Route::post('inventoryDelete','InventoryController@deleteInventory');
 Route::resource('order','OrderController');
 Route::resource('customers','CustomerController');
+Route::resource('waiter','WaiterController');
+Route::resource('manageWaiters','ManageWaiterController');
+Route::get('waiterOrder','OrderController@waiterOrder');
+Route::post('processOrder','OrderController@processOrder');
+Route::post('reverseOrder','OrderController@reverseOrder');
+Route::post('waiterCompleteOrder','OrderController@waiterComplete');
+Route::resource('receipt','ReceiptController');
+Route::get('waiterTable','WaiterController@table');
+Route::post('waiterTable/{id}','WaiterController@waiterTable');
+
 Route::get('profile','ProfileController@index');
 
 

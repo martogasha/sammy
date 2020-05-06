@@ -1,56 +1,60 @@
-@include('AdminPartials.header')
+@include('WaiterPartial.header')
 @include('flash-message')
-<head><title>Admin Inventory</title>
+<head><title>Receipt</title>
 
 <div class="content-panel-toggler"><i class="os-icon os-icon-grid-squares-22"></i><span>Sidebar</span></div>
 <div class="content-i">
     <div class="content-box">
         <div class="row">
             <div class="col-sm-12 col-xxxl-6">
-                <div class="element-wrapper"><h6 class="element-header">Products in store</h6>
-                    <a class="btn btn-sm btn-secondary" id="createServiceBillButton" type="button" data-toggle="modal" data-target="#CreateInventoryModal" href="#">Create Product</a>
-
-                    <br>
-                    <br>
-                    <div class="element-box">
-                        <div class="table-responsive">
-                            <table class="table table-lightborder">
-                                <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Image</th>
-                                    <th class="text-right">Price</th>
-                                    <th class="text-right">Quantity</th>
-                                    <th class="text-center">Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($products as $product)
-                                <tr>
-                                    <td class="nowrap">{{$product->name}}</td>
-                                    <td>
-                                        <div class="cell-image-list">
-                                            <div class="cell-img"
-                                                 style="background-image: url({{asset('uploads/cafe/'.$product->image)}})"></div>
+                <div class="element-wrapper"><h6 class="element-header">Orders Processed</h6>
+                    <button class="btn btn-secondary" id="printButton">Print</button>
+                    <div class="container">
+                        <div class="row">
+                            <div class="receipt-main col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3" id="receipt">
+                                        <div class="col-xs-4 col-sm-4 col-md-4">
+                                            <div class="receipt-left">
+                                                <h1>Receipt</h1>
+                                            </div>
                                         </div>
-                                    </td>
-                                    <td class="text-right">Ksh: {{$product->price}}</td>
-                                    <td class="text-right">{{$product->quantity}}</td>
-                                    <td class="text-center">
-                                        <form action="{{url('inventoryDelete')}}" method="post">
-                                            @csrf
-                                        <input type="hidden" name="inventoryId" value="{{$product->id}}">
-                                        <button type="submit" class="btn btn-secondary">Delete</button>
-                                        </form>
+                                    </div>
+                                </div>
 
-                                    </td>
-                                </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                                <div>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>Description</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($reps as $rep)
+                                        <tr>
+                                            <td class="col-md-9">Payment for <b>{{$rep->name}}</b></td>
+                                            <td class="col-md-3"><i class="fa fa-inr"></i>Ksh: {{$rep->price}}/-</td>
+                                        </tr>
+                                        @endforeach
+                                        <tr>
+
+                                            <td class="text-right"><h2><strong>Total: </strong></h2></td>
+                                            <td class="text-left text-danger"><h2><strong><i class="fa fa-inr"></i>Ksh: {{$total}}/-</strong></h2></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <i>Served By: <b>{{$name->user->name}}</b></i>
+                                    <br>
+                                    <br>
+                                    <form action="{{url('waiterCompleteOrder')}}" method="post">
+                                        @csrf
+                                        <button class="btn btn-secondary btn-block">Back to Inventory</button>
+
+                                    </form>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-                </div>
             </div>
             <div class="d-none d-xxxl-block col-xxxl-6">
                 <div class="element-wrapper">
@@ -138,53 +142,6 @@
 </div>
 <div class="display-type"></div>
 </div>
-{{--Create Inventory Modal--}}
-<div aria-hidden="true" class="onboarding-modal modal fade animated"
-     id="CreateInventoryModal" role="dialog" tabindex="-1">
-    <div class="modal-dialog modal-centered" role="document">
-        <div class="modal-content text-center">
-            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-                <span class="close-label">Close</span><span
-                    class="os-icon os-icon-close"></span></button>
-            <div class="onboarding-content with-gradient">
-                <h4 class="onboarding-title">Product Details</h4>
-                <form action="{{route('inventory.store')}}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group"><label for="">Name</label>
-                                <input class="form-control" name="name" placeholder="Enter Product Name..." value="">
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group"><label for="">Description</label>
-                                <input class="form-control" name="desc" placeholder="Enter Product Description..." value="">
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group"><label for="">Price</label>
-                                <input class="form-control" name="price" placeholder="Enter Product Price..." value="">
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group"><label for="">Quantity</label>
-                                <input class="form-control" name="quantity" placeholder="Enter Quantity..." value="">
-                            </div>
-                        </div>
-
-                        <div class="col-sm-12">
-                            <div class="form-group"><label for="">Image</label>
-                                <input type="file" name="image" class="form-control" >
-                            </div>
-                        </div>
-                        <button class="btn-outline-secondary btn-block">Submit</button>
-                    </div>
-
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 <script src="asset/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="asset/bower_components/popper.js/dist/umd/popper.min.js"></script>
 <script src="asset/bower_components/moment/moment.js"></script>
@@ -215,7 +172,15 @@
 <script src="asset/bower_components/bootstrap/js/dist/popover.js"></script>
 <script src="asset/js/demo_customizer5739.js?version=4.5.0"></script>
 <script src="asset/js/main5739.js?version=4.5.0"></script>
-<script></script>
+<script>
+    $getProdId = $('#getProdId').val();
+    $('#getId').append($getProdId);
+    $('#printButton').click(function () {
+        $('#receipt').show();
+        window.print();
+
+    })
+</script>
 </body>
 <!-- Mirrored from light.pinsupreme.com/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Apr 2020 15:55:47 GMT -->
 </html>

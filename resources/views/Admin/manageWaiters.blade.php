@@ -1,14 +1,14 @@
 @include('AdminPartials.header')
 @include('flash-message')
-<head><title>Admin Inventory</title>
+<head><title>Manage Waiters</title>
 
 <div class="content-panel-toggler"><i class="os-icon os-icon-grid-squares-22"></i><span>Sidebar</span></div>
 <div class="content-i">
     <div class="content-box">
         <div class="row">
             <div class="col-sm-12 col-xxxl-6">
-                <div class="element-wrapper"><h6 class="element-header">Products in store</h6>
-                    <a class="btn btn-sm btn-secondary" id="createServiceBillButton" type="button" data-toggle="modal" data-target="#CreateInventoryModal" href="#">Create Product</a>
+                <div class="element-wrapper"><h6 class="element-header">Customer Details</h6>
+                    <a class="btn btn-sm btn-secondary" id="createServiceBillButton" type="button" data-toggle="modal" data-target="#CreateInventoryModal" href="#">Register Waiter</a>
 
                     <br>
                     <br>
@@ -17,33 +17,22 @@
                             <table class="table table-lightborder">
                                 <thead>
                                 <tr>
-                                    <th>Product</th>
-                                    <th>Image</th>
-                                    <th class="text-right">Price</th>
-                                    <th class="text-right">Quantity</th>
-                                    <th class="text-center">Action</th>
+                                    <th>Waiters Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($products as $product)
                                 <tr>
-                                    <td class="nowrap">{{$product->name}}</td>
-                                    <td>
-                                        <div class="cell-image-list">
-                                            <div class="cell-img"
-                                                 style="background-image: url({{asset('uploads/cafe/'.$product->image)}})"></div>
-                                        </div>
-                                    </td>
-                                    <td class="text-right">Ksh: {{$product->price}}</td>
-                                    <td class="text-right">{{$product->quantity}}</td>
-                                    <td class="text-center">
-                                        <form action="{{url('inventoryDelete')}}" method="post">
-                                            @csrf
-                                        <input type="hidden" name="inventoryId" value="{{$product->id}}">
-                                        <button type="submit" class="btn btn-secondary">Delete</button>
-                                        </form>
-
-                                    </td>
+                                    <td>{{$product->name}}</td>
+                                    <td>{{$product->email}}</td>
+                                    <td>{{$product->phone}}</td>
+                                    <form action="{{url('waiterTable',$product->id)}}" method="post">
+                                        @csrf
+                                        <td><button type="submit" class="btn btn-secondary">View Report</button></td>
+                                    </form>
                                 </tr>
                                 @endforeach
                                 </tbody>
@@ -138,7 +127,7 @@
 </div>
 <div class="display-type"></div>
 </div>
-{{--Create Inventory Modal--}}
+{{--Register Waiter Modal--}}
 <div aria-hidden="true" class="onboarding-modal modal fade animated"
      id="CreateInventoryModal" role="dialog" tabindex="-1">
     <div class="modal-dialog modal-centered" role="document">
@@ -147,37 +136,28 @@
                 <span class="close-label">Close</span><span
                     class="os-icon os-icon-close"></span></button>
             <div class="onboarding-content with-gradient">
-                <h4 class="onboarding-title">Product Details</h4>
-                <form action="{{route('inventory.store')}}" method="post" enctype="multipart/form-data">
+                <h4 class="onboarding-title">Waiter Details</h4>
+                <form action="{{route('manageWaiters.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group"><label for="">Name</label>
-                                <input class="form-control" name="name" placeholder="Enter Product Name..." value="">
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group"><label for="">Description</label>
-                                <input class="form-control" name="desc" placeholder="Enter Product Description..." value="">
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group"><label for="">Price</label>
-                                <input class="form-control" name="price" placeholder="Enter Product Price..." value="">
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group"><label for="">Quantity</label>
-                                <input class="form-control" name="quantity" placeholder="Enter Quantity..." value="">
+                                <input class="form-control" name="name" placeholder="Enter Waiter Name..." value="">
                             </div>
                         </div>
 
                         <div class="col-sm-12">
-                            <div class="form-group"><label for="">Image</label>
-                                <input type="file" name="image" class="form-control" >
+                            <div class="form-group"><label for="">Email</label>
+                                <input class="form-control" name="email" placeholder="Enter Waiter Email..." value="">
                             </div>
                         </div>
-                        <button class="btn-outline-secondary btn-block">Submit</button>
+                        <div class="col-sm-12">
+                            <div class="form-group"><label for="">Phone</label>
+                                <input class="form-control" name="phone" placeholder="Enter Waiter Phone No..." value="">
+                            </div>
+                        </div>z`
+                        <input type="hidden" name="role" value=3>
+                            <button class="btn-outline-secondary btn-block">Submit</button>
                     </div>
 
                 </form>

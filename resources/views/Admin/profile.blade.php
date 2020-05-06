@@ -1,4 +1,6 @@
 @include('AdminPartials.header')
+<head><title>Profile</title>
+
 <div class="content-w">
     <ul class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>

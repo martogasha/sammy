@@ -19,6 +19,7 @@ class CreateInventoriesTable extends Migration
             $table->string('desc');
             $table->mediumText('image');
             $table->integer('price');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }

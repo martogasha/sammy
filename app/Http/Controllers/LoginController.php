@@ -27,6 +27,9 @@ class LoginController extends Controller
             } elseif ($user->role == 2) {
                 return redirect(url('/'));
             }
+            elseif ($user->role ==3){
+                return redirect(url('waiter'));
+            }
         } else {
             return redirect(url('loginCustom'))->with('error', 'CREDENTIALS DOES NOT MATCH');
         }

@@ -1,5 +1,7 @@
 @include('AdminPartials.header')
 @include('flash-message')
+<head><title>Admin Customers</title>
+
 <div class="content-panel-toggler"><i class="os-icon os-icon-grid-squares-22"></i><span>Sidebar</span></div>
 <div class="content-i">
     <div class="content-box">
