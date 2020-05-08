@@ -24,7 +24,7 @@
 <body class="auth-wrapper">
 <div class="all-wrapper menu-side with-pattern">
     <div class="auth-box-w">
-        <div class="logo-w"><a href="index.html"><img alt="" src="asset/img/logo-big.png">Cafe Duke</a></div>
+        <div class="logo-w"><a href="index.html"><img alt="" src="asset/img/logo-big.png">Kabuku Restaurant</a></div>
         <h4 class="auth-header">Login Form</h4>
         <form action="{{route('Login')}}" method="post">
             @csrf

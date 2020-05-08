@@ -1,14 +1,14 @@
-@include('AdminPartials.header')
+@include('WaiterPartial.header')
 @include('flash-message')
-<head><title>Manage Waiters</title>
+<head><title>Menu</title>
 
 <div class="content-panel-toggler"><i class="os-icon os-icon-grid-squares-22"></i><span>Sidebar</span></div>
 <div class="content-i">
     <div class="content-box">
         <div class="row">
             <div class="col-sm-12 col-xxxl-6">
-                <div class="element-wrapper"><h6 class="element-header">Customer Details</h6>
-                    <a class="btn btn-sm btn-secondary" id="createServiceBillButton" type="button" data-toggle="modal" data-target="#CreateInventoryModal" href="#">Register Waiter</a>
+                <div class="element-wrapper"><h6 class="element-header">Menu</h6>
+                    <a class="btn btn-sm btn-secondary" id="createServiceBillButton" type="button" data-toggle="modal" data-target="#processOrderModal" href="#">Process Order</a>
 
                     <br>
                     <br>
@@ -17,22 +17,25 @@
                             <table class="table table-lightborder">
                                 <thead>
                                 <tr>
-                                    <th>Waiters Name</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Action</th>
+                                    <th>Product</th>
+                                    <th class="text-right">Price</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($products as $product)
-                                <tr>
-                                    <td>{{$product->name}}</td>
-                                    <td>{{$product->email}}</td>
-                                    <td>{{$product->phone}}</td>
-                                    <form action="{{url('waiterTable',$product->id)}}" method="post">
-                                        @csrf
-                                        <td><button type="submit" class="btn btn-secondary">View Report</button></td>
-                                    </form>
+                                @foreach($prods as $prod)
+
+                                    <tr>
+                                    <td class="nowrap">{{$prod->name}}</td>
+                                    <td class="text-right">Ksh: {{$prod->price}}</td>
+                                    <td class="text-center">
+                                        <form action="{{url('inventoryDelete')}}" method="post">
+                                            @csrf
+                                        <input type="hidden" name="inventoryId" value="1">
+                                        <button type="submit" class="btn btn-secondary">Delete</button>
+                                        </form>
+
+                                    </td>
                                 </tr>
                                 @endforeach
                                 </tbody>
@@ -127,44 +130,75 @@
 </div>
 <div class="display-type"></div>
 </div>
-{{--Register Waiter Modal--}}
-<div aria-hidden="true" class="onboarding-modal modal fade animated"
-     id="CreateInventoryModal" role="dialog" tabindex="-1">
-    <div class="modal-dialog modal-centered" role="document">
-        <div class="modal-content text-center">
-            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-                <span class="close-label">Close</span><span
-                    class="os-icon os-icon-close"></span></button>
-            <div class="onboarding-content with-gradient">
-                <h4 class="onboarding-title">Waiter Details</h4>
-                <form action="{{route('manageWaiters.store')}}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group"><label for="">Name</label>
-                                <input class="form-control" name="name" placeholder="Enter Waiter Name..." value="">
+    {{--Create Process Order Modal--}}
+    <div aria-hidden="true" class="onboarding-modal modal fade animated"
+         id="processOrderModal" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-centered" role="document">
+            <div class="modal-content text-center">
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span class="close-label">Close</span><span
+                        class="os-icon os-icon-close"></span></button>
+                <div class="onboarding-content with-gradient">
+                    <h4 class="onboarding-title">Product Details</h4>
+                    <form action="{{url('processOrder')}}" method="post">
+                        @csrf
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group"><label for="">Product</label>
+                                    <select class="form-control" name="product">
+                                        <option>Select Product</option>
+                                        @foreach($prods as $prod)
+                                            <option value="{{$prod->name}}">{{$prod->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                        </div>
+                            <div class="col-sm-12">
+                                <div class="form-group"><label for="">Quantity</label>
+                                    <select class="form-control" name="quantity">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
 
-                        <div class="col-sm-12">
-                            <div class="form-group"><label for="">Email</label>
-                                <input class="form-control" name="email" placeholder="Enter Waiter Email..." value="">
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group"><label for="">Phone</label>
-                                <input class="form-control" name="phone" placeholder="Enter Waiter Phone No..." value="">
+
+                            <div class="col-sm-12">
+                                <div class="form-group"><label for="">Price</label>
+                                    <input class="form-control" name="price" placeholder="Enter Product Price..." value="">
+                                </div>
                             </div>
-                        </div>
-                        <input type="hidden" name="role" value=3>
+                            <div class="col-sm-12" >
+                                <div class="form-group"><label for="">Mode</label>
+                                    <select class="form-control" id="mode" name="mode">
+                                        <option value="Instant">Instant</option>
+                                        <option value="Take Away">Take Away</option>
+                                        <option value="Delivery">Delivery</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12" id="delivery">
+                                <div class="form-group"><label for="">Delivery Person</label>
+                                    <select class="form-control" name="delivery">
+                                        <option value="n/a">Select Delivery Person</option>
+
+                                        @foreach($dels as $del)
+                                            <option value="{{$del->first}} {{$del->last}}">{{$del->first}} {{$del->last}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                             <button class="btn-outline-secondary btn-block">Submit</button>
-                    </div>
+                        </div>
 
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
 <script src="asset/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="asset/bower_components/popper.js/dist/umd/popper.min.js"></script>
 <script src="asset/bower_components/moment/moment.js"></script>

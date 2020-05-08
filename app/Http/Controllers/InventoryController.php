@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Delivery;
 use App\Inventory;
 use App\Order;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ class InventoryController extends Controller
     public function index(){
         $products = Inventory::all();
         return view('Admin.inventory',[
-            'products'=>$products
+            'products'=>$products,
         ]);
     }
     public function store(Request $request){

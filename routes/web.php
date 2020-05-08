@@ -47,6 +47,12 @@ Route::post('waiterCompleteOrder','OrderController@waiterComplete');
 Route::resource('receipt','ReceiptController');
 Route::get('waiterTable','WaiterController@table');
 Route::post('waiterTable/{id}','WaiterController@waiterTable');
+Route::resource('menu','MenuController');
+Route::resource('delivery','DeliveryController');
+Route::resource('table','TableController');
+Route::post('tableDelete','TableController@deleteTable');
+
+
 
 Route::get('profile','ProfileController@index');
 

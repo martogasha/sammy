@@ -1,14 +1,14 @@
 @include('AdminPartials.header')
 @include('flash-message')
-<head><title>Manage Waiters</title>
+<head><title>Manage Delivery Person</title>
 
 <div class="content-panel-toggler"><i class="os-icon os-icon-grid-squares-22"></i><span>Sidebar</span></div>
 <div class="content-i">
     <div class="content-box">
         <div class="row">
             <div class="col-sm-12 col-xxxl-6">
-                <div class="element-wrapper"><h6 class="element-header">Customer Details</h6>
-                    <a class="btn btn-sm btn-secondary" id="createServiceBillButton" type="button" data-toggle="modal" data-target="#CreateInventoryModal" href="#">Register Waiter</a>
+                <div class="element-wrapper"><h6 class="element-header">Delivery Person Details</h6>
+                    <a class="btn btn-sm btn-secondary" id="createServiceBillButton" type="button" data-toggle="modal" data-target="#CreateInventoryModal" href="#">Register Delivery Person</a>
 
                     <br>
                     <br>
@@ -17,8 +17,7 @@
                             <table class="table table-lightborder">
                                 <thead>
                                 <tr>
-                                    <th>Waiters Name</th>
-                                    <th>Email</th>
+                                    <th>Delivery Person Name</th>
                                     <th>Phone</th>
                                     <th>Action</th>
                                 </tr>
@@ -26,8 +25,7 @@
                                 <tbody>
                                 @foreach($products as $product)
                                 <tr>
-                                    <td>{{$product->name}}</td>
-                                    <td>{{$product->email}}</td>
+                                    <td>{{$product->first}} {{$product->last}}</td>
                                     <td>{{$product->phone}}</td>
                                     <form action="{{url('waiterTable',$product->id)}}" method="post">
                                         @csrf
@@ -136,19 +134,19 @@
                 <span class="close-label">Close</span><span
                     class="os-icon os-icon-close"></span></button>
             <div class="onboarding-content with-gradient">
-                <h4 class="onboarding-title">Waiter Details</h4>
-                <form action="{{route('manageWaiters.store')}}" method="post" enctype="multipart/form-data">
+                <h4 class="onboarding-title">Delivery Person Details</h4>
+                <form action="{{route('delivery.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="form-group"><label for="">Name</label>
-                                <input class="form-control" name="name" placeholder="Enter Waiter Name..." value="">
+                            <div class="form-group"><label for="">First Name</label>
+                                <input class="form-control" name="first" placeholder="Enter Waiter Name..." value="">
                             </div>
                         </div>
 
                         <div class="col-sm-12">
-                            <div class="form-group"><label for="">Email</label>
-                                <input class="form-control" name="email" placeholder="Enter Waiter Email..." value="">
+                            <div class="form-group"><label for="">Last Name</label>
+                                <input class="form-control" name="last" placeholder="Enter Waiter Email..." value="">
                             </div>
                         </div>
                         <div class="col-sm-12">

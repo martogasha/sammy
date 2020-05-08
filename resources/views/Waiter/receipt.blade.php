@@ -44,6 +44,11 @@
                                     </table>
                                     <i>Served By: <b>{{$name->user->name}}</b></i>
                                     <br>
+                                    <i>Mode: <b>{{$name->status}}</b></i>
+                                    <br>
+                                    <i>Delivery Person: <b>{{$name->delivery}}</b></i>
+
+                                    <br>
                                     <br>
                                     <form action="{{url('waiterCompleteOrder')}}" method="post">
                                         @csrf

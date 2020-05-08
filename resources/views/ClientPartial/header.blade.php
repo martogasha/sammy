@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Cafe Duke</title>
+    <title>Kabuku Restaurant</title>
 
     <!-- === webfont=== -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
@@ -54,7 +54,7 @@
                     <div class="col-sm-5">
                         <div class="header_contact">
                             <a href="tel:+880235240251"><i class="fa fa-phone" aria-hidden="true"></i> +88 023 524 0251</a>
-                            <a href="mailto:Cafeduke@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i>Cafeduke@gmail.com</a>
+                            <a href="mailto:Cafeduke@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i>kabukurestaurant@gmail.com</a>
                         </div>
                     </div>
                     <div class="col-sm-7">
@@ -68,6 +68,7 @@
                 </div>
 
             </div>
+            <p>Name:</p><i><b>{{\Illuminate\Support\Facades\Auth::user()->name}}</b></i>
             <form action="{{route('logout')}}" method="post">
                 @csrf
             <button type="submit" class="btn btn-danger">Logout</button>
@@ -85,7 +86,7 @@
                         </nav>
                     </div>
                     <div class="col-sm-3">
-                        <a href="index-2.html" class="log"><img src="img/logo.png" alt=""></a>
+                        <a href="{{url('/')}}" class="log"><img src="" alt="">KABUKU RESTAURANT</a>
                     </div>
                     <div class="col-sm-4">
                         <form action="#" class="search_bar">

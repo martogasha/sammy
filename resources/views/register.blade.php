@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <!-- Mirrored from light.pinsupreme.com/auth_register.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Apr 2020 15:57:52 GMT -->
-<head><title>Admin Dashboard HTML Template</title>
+<head><title>Register</title>
     <meta charset="utf-8">
     <meta content="ie=edge" http-equiv="x-ua-compatible">
     <meta content="template language" name="keywords">
@@ -24,7 +24,7 @@
 @include('flash-message')
 <div class="all-wrapper menu-side with-pattern">
     <div class="auth-box-w wider">
-        <div class="logo-w"><a href="index.html"><img alt="" src="asset/img/logo-big.png">Cafe Duke</a></div>
+        <div class="logo-w"><a href="index.html"><img alt="" src="asset/img/logo-big.png">Kabuku Restaurant</a></div>
         <h4 class="auth-header">Create new account</h4>
         <form action="{{route('Register')}}" method="post">
             @csrf

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Delivery;
 use App\Inventory;
 use App\Report;
 use Illuminate\Http\Request;
@@ -10,8 +11,12 @@ class WaiterController extends Controller
 {
     public function index(){
         $products = Inventory::all();
+        $dels = Delivery::all();
+
         return view('Waiter.inventory',[
-            'products'=>$products
+            'products'=>$products,
+            'dels'=>$dels
+
         ]);
     }
     public function waiterTable($id){

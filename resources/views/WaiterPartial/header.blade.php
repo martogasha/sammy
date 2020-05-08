@@ -336,6 +336,20 @@
                             <div class="os-icon os-icon-layout"></div>
                         </div>
                         <span>Inventory</span></a>
+                </li>
+                <li class="selected has-menu"><a href="{{url('menu')}}">
+                        <div class="icon-w">
+                            <div class="os-icon os-icon-layout"></div>
+                        </div>
+                        <span>Menu</span></a>
+                </li>
+                <li class="selected has-menu"><a href="{{url('table')}}">
+                        <div class="icon-w">
+                            <div class="os-icon os-icon-layout"></div>
+                        </div>
+                        <span>Table Reservations</span></a>
+                </li>
+
 
             </ul>
         </div>

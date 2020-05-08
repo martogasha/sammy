@@ -21,6 +21,7 @@
                                     <th class="text-right">Price</th>
                                     <th class="text-right">Quantity</th>
                                     <th class="text-right">Total Price</th>
+                                    <th class="text-right">Mode</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                                 </thead>
@@ -31,6 +32,8 @@
                                     <td class="text-right">Ksh: {{$prod->price}}</td>
                                     <th class="text-right">{{$prod->quantity}}</th>
                                     <th class="text-right" id="totalPrice">{{($prod->quantity)*($prod->price)}}</th>
+                                    <th class="text-right">{{$prod->status}}</th>
+
                                     <td class="text-center">
                                         <form action="{{url('reverseOrder')}}" method="post">
                                             @csrf
@@ -94,7 +97,7 @@
                             </div>
                             <div class="bar-level-1" style="width: 100%">
                                 <div class="bar-level-2" style="width: 40%">
-                                    <div class="bar-level-3" style="width: 20%"></div>
+                                   Inventory <div class="bar-level-3" style="width: 20%"></div>
                                 </div>
                             </div>
                         </div>
@@ -149,55 +152,75 @@
 <div class="display-type"></div>
 </div>
 {{--Create Process Order Modal--}}
-<div aria-hidden="true" class="onboarding-modal modal fade animated"
-     id="processOrderModal" role="dialog" tabindex="-1">
-    <div class="modal-dialog modal-centered" role="document">
-        <div class="modal-content text-center">
-            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-                <span class="close-label">Close</span><span
-                    class="os-icon os-icon-close"></span></button>
-            <div class="onboarding-content with-gradient">
-                <h4 class="onboarding-title">Product Details</h4>
-                <form action="{{url('processOrder')}}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group"><label for="">Product</label>
-                                <select class="form-control" name="product">
-                                    <option>Select Product</option>
-                                    @foreach($products as $product)
-                                        <option value="{{$product->name}}">{{$product->name}}</option>
-                                    @endforeach
-                                </select>
+    <div aria-hidden="true" class="onboarding-modal modal fade animated"
+         id="processOrderModal" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-centered" role="document">
+            <div class="modal-content text-center">
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span class="close-label">Close</span><span
+                        class="os-icon os-icon-close"></span></button>
+                <div class="onboarding-content with-gradient">
+                    <h4 class="onboarding-title">Product Details</h4>
+                    <form action="{{url('processOrder')}}" method="post">
+                        @csrf
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group"><label for="">Product</label>
+                                    <select class="form-control" name="product">
+                                        <option>Select Product</option>
+                                        @foreach($products as $product)
+                                            <option value="{{$product->name}}">{{$product->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group"><label for="">Quantity</label>
-                                <select class="form-control" name="quantity">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
+                            <div class="col-sm-12">
+                                <div class="form-group"><label for="">Quantity</label>
+                                    <select class="form-control" name="quantity">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
 
-                                </select>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-sm-12">
-                            <div class="form-group"><label for="">Price</label>
-                                <input class="form-control" name="price" placeholder="Enter Product Price..." value="">
+                            <div class="col-sm-12">
+                                <div class="form-group"><label for="">Price</label>
+                                    <input class="form-control" name="price" placeholder="Enter Product Price..." value="">
+                                </div>
                             </div>
-                        </div>
-                        <input type="hidden" name="productId" id="getId">
-                        <button class="btn-outline-secondary btn-block">Submit</button>
-                    </div>
+                            <div class="col-sm-12" >
+                                <div class="form-group"><label for="">Mode</label>
+                                    <select class="form-control" id="mode" name="mode">
+                                        <option value="Instant">Instant</option>
+                                        <option value="Take Away">Take Away</option>
+                                        <option value="Delivery">Delivery</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12" id="delivery">
+                                <div class="form-group"><label for="">Delivery Person</label>
+                                    <select class="form-control" name="delivery">
+                                        <option value="n/a">Select Delivery Person</option>
 
-                </form>
+                                    @foreach($dels as $del)
+                                            <option value="{{$del->first}} {{$del->last}}">{{$del->first}} {{$del->last}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="btn-outline-secondary btn-block">Submit</button>
+                        </div>
+
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<script src="asset/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <script src="asset/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="asset/bower_components/popper.js/dist/umd/popper.min.js"></script>
 <script src="asset/bower_components/moment/moment.js"></script>
 <script src="asset/bower_components/chart.js/dist/Chart.min.js"></script>

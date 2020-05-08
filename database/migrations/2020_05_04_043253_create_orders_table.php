@@ -18,8 +18,10 @@ class CreateOrdersTable extends Migration
             $table->string('name');
             $table->string('desc')->nullable();
             $table->mediumText('image')->nullable();
+            $table->string('status')->nullable();
+            $table->string('delivery')->nullable();
             $table->integer('price');
-            $table->integer('quantity');
+            $table->integer('quantity')->nullable();
             $table->integer('user_id');
             $table->timestamps();
         });

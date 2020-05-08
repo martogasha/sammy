@@ -248,6 +248,12 @@
                         </div>
                         <span>Manage Waiters</span></a>
                 </li>
+                <li class="selected has-menu"><a href="{{url('delivery')}}">
+                        <div class="icon-w">
+                            <div class="os-icon os-icon-layout"></div>
+                        </div>
+                        <span>Manage Delivery Person</span></a>
+                </li>
 
             </ul>
         </div>

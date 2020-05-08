@@ -219,6 +219,25 @@
                                 <input class="form-control" name="price" placeholder="Enter Product Price..." value="">
                             </div>
                         </div>
+                        <div class="col-sm-12" >
+                            <div class="form-group"><label for="">Mode</label>
+                                <select class="form-control" id="mode" name="mode">
+                                    <option value="Instant">Instant</option>
+                                    <option value="Take Away">Take Away</option>
+                                    <option value="Delivery">Delivery</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" id="delivery">
+                            <div class="form-group"><label for="">Delivery Person</label>
+                                <select class="form-control" name="delivery">
+                                    <option value="n/a">Select Delivery Person</option>
+                                    @foreach($dels as $del)
+                                    <option value="{{$del->first}} {{$del->last}}">{{$del->first}} {{$del->last}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <button class="btn-outline-secondary btn-block">Submit</button>
                     </div>
 
@@ -257,7 +276,9 @@
 <script src="asset/bower_components/bootstrap/js/dist/popover.js"></script>
 <script src="asset/js/demo_customizer5739.js?version=4.5.0"></script>
 <script src="asset/js/main5739.js?version=4.5.0"></script>
-<script></script>
+<script>
+
+</script>
 </body>
 <!-- Mirrored from light.pinsupreme.com/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Apr 2020 15:55:47 GMT -->
 </html>

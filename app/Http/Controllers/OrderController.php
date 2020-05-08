@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Delivery;
 use App\Inventory;
 use App\Order;
 use App\Receipt;
@@ -19,10 +20,12 @@ class OrderController extends Controller
     }
     public function waiterOrder(){
         $prods = Order::where('user_id',Auth::user()->id)->get();
+        $dels = Delivery::all();
         $products = Inventory::all();
             return view('Waiter.order',[
                 'prods'=>$prods,
-                'products'=>$products
+                'products'=>$products,
+                'dels'=>$dels
 
             ]);
 
@@ -32,12 +35,17 @@ class OrderController extends Controller
         $waiter->name = $request->product;
         $waiter->quantity = $request->quantity;
         $waiter->price = $request->price;
+        $waiter->status = $request->mode;
+        $waiter->delivery = $request->delivery;
+
         $waiter->user_id = Auth::user()->id;
         $waiter->save();
 
         $receipt = new Receipt();
         $receipt->name = $request->product;
         $receipt->quantity = $request->quantity;
+        $receipt->status = $request->mode;
+        $receipt->delivery = $request->delivery;
         $total = ($request->price)*($request->quantity);
         $receipt->price = $total;
         $receipt->user_id = Auth::user()->id;
@@ -46,6 +54,8 @@ class OrderController extends Controller
         $report = new Report();
         $report->name = $request->product;
         $report->quantity = $request->quantity;
+        $report->status = $request->mode;
+        $report->delivery = $request->delivery;
         $tot = ($request->price)*($request->quantity);
         $report->price = $tot;
         $report->user_id =Auth::user()->id;
@@ -70,7 +80,7 @@ class OrderController extends Controller
 
     }
     public function store(Request $request){
-        $complete = Order::where('id',$request->getProdId)->delete();
+        $complete = Order::where('user_id',$request->getUserId)->delete();
         $deleteReceipt = Receipt::where('name',$request->getPName)->delete();
         $delReport = Report::where('name',$request->getPName)->delete();
         return redirect()->back()->with('success','Order Successfully Deleted');

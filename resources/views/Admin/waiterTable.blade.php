@@ -4,7 +4,12 @@
 <div class="content-i">
     <div class="content-box">
         <div class="element-wrapper"><h6 class="element-header">WAITER REPORTS</h6>
+            @if(isset($name))
             <div class="element-box"><h5 class="form-header">{{$name->user->name}}</h5>
+                @else
+                    <div class="element-box"><h5 class="form-header"></h5>
+
+                    @endif
                 <div class="table-responsive">
                     <table id="dataTable1" width="100%" class="table table-striped table-lightfont">
                         <thead>
@@ -12,6 +17,8 @@
                             <th>Product Name</th>
                             <th>Quantity</th>
                             <th>Price</th>
+                            <th>Mode</th>
+                            <th>Delivery Person</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -20,6 +27,8 @@
                             <td>{{$report->name}}</td>
                             <td>{{$report->quantity}}</td>
                             <td>{{$report->price}}</td>
+                            <td>{{$report->status}}</td>
+                            <td>{{$report->delivery}}</td>
                            </tr>
                         @endforeach
                         </tbody>

@@ -19,6 +19,8 @@ class CreateReceiptsTable extends Migration
             $table->string('desc')->nullable();
             $table->mediumText('image')->nullable();
             $table->integer('price')->nullable();
+            $table->string('status')->nullable();
+            $table->string('delivery')->nullable();
             $table->integer('quantity');
             $table->integer('user_id');
             $table->timestamps();

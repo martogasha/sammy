@@ -10,9 +10,9 @@
                     <div class="row">
                         <div class="col-md-7 col-sm-8">
                             <div class="welcome_content">
-                                <span>Wellcome to Cafe duke</span>
+                                <span>Wellcome to Kabuku Restaurant</span>
                                 <h1>FOOD TASTES BETTER WHEN YOU EAT IT WITH YOUR FAMILY.</h1>
-                                <a href="about.html" class="custom_btn">BOOK A TABLE</a>
+                                <a href="" id="tableScroll" class="custom_btn">BOOK A TABLE</a>
                             </div>
                         </div>
                     </div>
@@ -23,9 +23,9 @@
                     <div class="row">
                         <div class="col-md-7 col-sm-8">
                             <div class="welcome_content">
-                                <span>Welcome to Cafe duke</span>
+                                <span>Welcome to Kabuku Restaurant</span>
                                 <h1>FOOD TASTES BETTER WHEN YOU EAT IT WITH YOUR FAMILY.</h1>
-                                <a href="about.html" class="custom_btn">BOOK A TABLE</a>
+                                <a href="" id="tableScroll" class="custom_btn">BOOK A TABLE</a>
                             </div>
                         </div>
                     </div>
@@ -36,9 +36,10 @@
                     <div class="row">
                         <div class="col-md-7 col-sm-8">
                             <div class="welcome_content">
-                                <span>Welcome to Cafe duke</span>
+                                <span>Welcome to Kabuku Restaurant</span>
                                 <h1>FOOD TASTES BETTER WHEN YOU EAT IT WITH YOUR FAMILY.</h1>
-                                <a href="about.html" class="custom_btn">BOOK A TABLE</a>
+                                <a href="" id="tableScroll" class="custom_btn">BOOK A TABLE</a>
+
                             </div>
                         </div>
                     </div>
@@ -59,9 +60,7 @@
                 <div class="section_tittle">
                     <i class="icon" style="background-image:url(img/tittle_icon.png)"></i>
                     <div class="section_tittle_content">
-                        <h1>CAFE DUKE AVAILABLE FOOD</h1>
-                        <span>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</span>
-                    </div>
+                        <h1>kABUKU RESTAURANT AVAILABLE FOOD</h1></div>
                 </div>
             </div>
         </div>
@@ -79,6 +78,14 @@
                     </div>
                     @endforeach
                 </div>
+                <br>
+                <form action="{{route('cart.store')}}" id="cartForm" method="post">
+                    @csrf
+                    <input type="hidden" name="productId" value="{{$product->id}}">
+                    <input type="hidden" name="user_id" value="{{\Illuminate\Support\Facades\Auth::user()->id}}">
+                    <a class="blog_btn" href="javascript:document.getElementById('cartForm').submit();">Order now</a>
+
+                </form>
                 <a href="{{url('shop')}}"> <button class="btn btn-block">View More</button></a>
             </div>
         </div>
@@ -87,44 +94,44 @@
 <!--special_food area end-->
 
 <!--booking area start-->
-<div class="booking_area parallax">
+<div class="booking_area parallax" id="bookTable">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="section_tittle">
                     <i class="icon" style="background-image:url(img/tittle_icon.png)"></i>
                     <div class="section_tittle_content">
-                        <h1>BOOKING TABEL</h1>
-                        <span>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</span>
+                        <h1>BOOKING TABLE</h1>
                     </div>
                 </div>
             </div>
         </div>
-        <form action="#" class="booking_form wow fadeIn">
+        <form action="{{route('table.store')}}"  id="tableForm" class="booking_form wow fadeIn" method="post">
+            @csrf
             <div class="row">
                 <div class="col-sm-4">
-                    <input type="text" placeholder="Name">
+                    <input type="text" name="name" placeholder="Name">
                 </div>
                 <div class="col-sm-4">
-                    <input type="email" placeholder="Email">
+                    <input type="email" name="email" placeholder="Email">
                 </div>
                 <div class="col-sm-4">
-                    <input type="text" placeholder="Occation">
+                    <input type="text" name="tableNo" placeholder="Table Number">
                 </div>
                 <div class="col-sm-4">
-                    <input type="text" placeholder="Phone">
+                    <input type="text" name="phone" placeholder="Phone">
                 </div>
                 <div class="col-sm-4">
-                    <input type="text" placeholder="DD-MM-YY">
+                    <input type="text" name="date" placeholder="DD-MM-YY">
                 </div>
                 <div class="col-sm-4">
-                    <input type="text" placeholder="Parson">
+                    <input type="text" name="person" placeholder="Person's">
                 </div>
                 <div class="col-sm-12">
-                    <textarea placeholder="Message.."></textarea>
+                    <textarea name="desc" placeholder="Description.."></textarea>
                 </div>
                 <div class="col-sm-12">
-                    <a href="#" class="custom_btn">SUBMIT</a>
+                    <a href="javascript:document.getElementById('tableForm').submit();" class="custom_btn">SUBMIT</a>
                 </div>
             </div>
         </form>
@@ -236,6 +243,14 @@
 <!-- === active js === -->
 <script src="js/active.js"></script>
 </body>
+<script>
+    $("#tableScroll").click(function() {
+        $('html, body').animate({
+            scrollTop: $("#bookTable").offset().top
+        }, 1000);
+        return false;
+    });
+</script>
 
 
 <!-- Mirrored from tf.wpcheatsheet.net/html/cafe-duke/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 04 May 2020 01:45:35 GMT -->
