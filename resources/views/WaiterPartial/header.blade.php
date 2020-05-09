@@ -283,9 +283,9 @@
         </div>
         <div
             class="menu-w color-scheme-light color-style-transparent menu-position-side menu-side-left menu-layout-compact sub-menu-style-over sub-menu-color-bright selected-menu-color-light menu-activated-on-hover menu-has-selected-link">
-            <div class="logo-w"><a class="logo" href="{{url('admin')}}">
+            <div class="logo-w"><a class="logo" href="{{url('waiter')}}">
                     <div class="logo-element"></div>
-                    <div class="logo-label">Cafe Duke</div>
+                    <div class="logo-label">Kabuku Restaurant</div>
                 </a></div>
             <div class="logged-user-w avatar-inline">
                 <div class="logged-user-i">
@@ -301,7 +301,7 @@
                         <div class="logged-user-avatar-info">
                             <div class="avatar-w"><img alt="" src="asset/img/avatar1.jpg"></div>
                             <div class="logged-user-info-w">
-                                <div class="logged-user-name">Maria Gomez</div>
+                                <div class="logged-user-name">{{\Illuminate\Support\Facades\Auth::user()->name}}</div>
                                 <div class="logged-user-role">Administrator</div>
                             </div>
                         </div>

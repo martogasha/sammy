@@ -25,7 +25,6 @@
                             <div class="welcome_content">
                                 <span>Welcome to Kabuku Restaurant</span>
                                 <h1>FOOD TASTES BETTER WHEN YOU EAT IT WITH YOUR FAMILY.</h1>
-                                <a href="" id="tableScroll" class="custom_btn">BOOK A TABLE</a>
                             </div>
                         </div>
                     </div>
@@ -38,8 +37,6 @@
                             <div class="welcome_content">
                                 <span>Welcome to Kabuku Restaurant</span>
                                 <h1>FOOD TASTES BETTER WHEN YOU EAT IT WITH YOUR FAMILY.</h1>
-                                <a href="" id="tableScroll" class="custom_btn">BOOK A TABLE</a>
-
                             </div>
                         </div>
                     </div>
