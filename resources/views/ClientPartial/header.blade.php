@@ -53,13 +53,13 @@
                 <div class="row">
                     <div class="col-sm-5">
                         <div class="header_contact">
-                            <a href="tel:+880235240251"><i class="fa fa-phone" aria-hidden="true"></i> +88 023 524 0251</a>
+                            <a href="tel:0720589654"><i class="fa fa-phone" aria-hidden="true"></i> 0720589455</a>
                             <a href="mailto:Cafeduke@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i>kabukurestaurant@gmail.com</a>
                         </div>
                     </div>
                     <div class="col-sm-7">
                             <span class="header_time">
-                               OPENING HOUR : SUNDAT - FRIDAY  | 9 AM - 10 PM
+                               OPENING HOUR : MONDAY - SATURDAY  | 7 AM - 9 PM
                            </span>
                         <a href="{{url('cart')}}" class="cart_btn">
                             CART<i class="fa fa-cart-arrow-down" aria-hidden="true"></i> <span class="cart_quentity">0</span>
@@ -68,7 +68,7 @@
                 </div>
 
             </div>
-            <p>Name:</p><i><b>{{\Illuminate\Support\Facades\Auth::user()->name}}</b></i>
+            <p>Name:</p><i><b>{{\Illuminate\Support\Facades\Auth::user()->user_name}}</b></i>
             <form action="{{route('logout')}}" method="post">
                 @csrf
             <button type="submit" class="btn btn-danger">Logout</button>

@@ -15,9 +15,9 @@ class CreateDeliveriesTable extends Migration
     {
         Schema::create('deliveries', function (Blueprint $table) {
             $table->id();
-            $table->string('first');
-            $table->string('last');
-            $table->string('phone');
+            $table->string('delivery_firstName');
+            $table->string('delivery_lastName');
+            $table->string('delivery_phone');
             $table->timestamps();
         });
     }

@@ -25,8 +25,8 @@
                                 <tbody>
                                 @foreach($products as $product)
                                 <tr>
-                                    <td>{{$product->first}} {{$product->last}}</td>
-                                    <td>{{$product->phone}}</td>
+                                    <td>{{$product->delivery_firstName}} {{$product->delivery_lastName}}</td>
+                                    <td>{{$product->delivery_phone}}</td>
                                     <form action="{{url('waiterTable',$product->id)}}" method="post">
                                         @csrf
                                         <td><button type="submit" class="btn btn-secondary">View Report</button></td>

@@ -15,13 +15,13 @@ class CreateTablesTable extends Migration
     {
         Schema::create('tables', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->string('tableNo');
-            $table->integer('phone');
-            $table->string('date');
-            $table->string('person');
-            $table->string('desc');
+            $table->string('table_personName');
+            $table->string('table_email');
+            $table->string('table_tableNo');
+            $table->integer('table_personPhone');
+            $table->string('table_date');
+            $table->string('table_person');
+            $table->string('table_desc');
 
 
 

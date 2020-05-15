@@ -5,7 +5,7 @@
     <div class="content-box">
         <div class="element-wrapper"><h6 class="element-header">WAITER REPORTS</h6>
             @if(isset($name))
-            <div class="element-box"><h5 class="form-header">{{$name->user->name}}</h5>
+            <div class="element-box"><h5 class="form-header">{{$name->user->user_name}}</h5>
                 @else
                     <div class="element-box"><h5 class="form-header"></h5>
 
@@ -24,11 +24,11 @@
                         <tbody>
                         @foreach($reports as $report)
                         <tr>
-                            <td>{{$report->name}}</td>
-                            <td>{{$report->quantity}}</td>
-                            <td>{{$report->price}}</td>
-                            <td>{{$report->status}}</td>
-                            <td>{{$report->delivery}}</td>
+                            <td>{{$report->order_name}}</td>
+                            <td>{{$report->order_quantity}}</td>
+                            <td>{{$report->order_price}}</td>
+                            <td>{{$report->order_status}}</td>
+                            <td>{{$report->order_delivery}}</td>
                            </tr>
                         @endforeach
                         </tbody>

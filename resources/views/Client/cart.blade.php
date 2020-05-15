@@ -29,9 +29,9 @@
 
                                 </form>
                                 <td class="product_img text-center"><img src="{{asset('uploads/cafe/'.$cart->image)}}" alt=""></td>
-                                <td class="item_name cart_padding35">{{$cart->name}}</td>
-                                <td class="cart_padding35">Ksh: {{$cart->price}}</td>
-                                <td  class="text-center">Ksh: {{$cart->price}}</td>
+                                <td class="item_name cart_padding35">{{$cart->order_name}}</td>
+                                <td class="cart_padding35">Ksh: {{$cart->order_price}}</td>
+                                <td  class="text-center">Ksh: {{$cart->order_price}}</td>
                             </tr>
                             @endforeach
                             </tbody>

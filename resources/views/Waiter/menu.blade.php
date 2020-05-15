@@ -19,6 +19,7 @@
                                 <tr>
                                     <th>Product</th>
                                     <th class="text-right">Price</th>
+                                    <th class="text-right">Quantity</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                                 </thead>
@@ -26,8 +27,9 @@
                                 @foreach($prods as $prod)
 
                                     <tr>
-                                    <td class="nowrap">{{$prod->name}}</td>
-                                    <td class="text-right">Ksh: {{$prod->price}}</td>
+                                    <td class="nowrap">{{$prod->inventory_name}}</td>
+                                    <td class="text-right">Ksh: {{$prod->inventory_price}}</td>
+                                        <td class="text-right">{{$prod->inventory_quantity}}</td>
                                     <td class="text-center">
                                         <form action="{{url('inventoryDelete')}}" method="post">
                                             @csrf
@@ -148,7 +150,7 @@
                                     <select class="form-control" name="product">
                                         <option>Select Product</option>
                                         @foreach($prods as $prod)
-                                            <option value="{{$prod->name}}">{{$prod->name}}</option>
+                                            <option value="{{$prod->inventory_name}}">{{$prod->inventory_name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -185,7 +187,7 @@
                                         <option value="n/a">Select Delivery Person</option>
 
                                         @foreach($dels as $del)
-                                            <option value="{{$del->first}} {{$del->last}}">{{$del->first}} {{$del->last}}</option>
+                                            <option value="{{$del->delivery_firstName}} {{$del->delivery_lastName}}">{{$del->delivery_firstName}} {{$del->delivery_lastName}}</option>
                                         @endforeach
                                     </select>
                                 </div>

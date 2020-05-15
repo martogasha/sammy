@@ -32,57 +32,57 @@ class OrderController extends Controller
     }
     public function processOrder(Request $request){
         $waiter = new Order();
-        $waiter->name = $request->product;
-        $waiter->quantity = $request->quantity;
-        $waiter->price = $request->price;
-        $waiter->status = $request->mode;
-        $waiter->delivery = $request->delivery;
+        $waiter->order_name = $request->product;
+        $waiter->order_quantity = $request->quantity;
+        $waiter->order_price = $request->price;
+        $waiter->order_status = $request->mode;
+        $waiter->order_delivery = $request->delivery;
 
         $waiter->user_id = Auth::user()->id;
         $waiter->save();
 
         $receipt = new Receipt();
-        $receipt->name = $request->product;
-        $receipt->quantity = $request->quantity;
-        $receipt->status = $request->mode;
-        $receipt->delivery = $request->delivery;
+        $receipt->order_name = $request->product;
+        $receipt->order_quantity = $request->quantity;
+        $receipt->order_status = $request->mode;
+        $receipt->order_delivery = $request->delivery;
         $total = ($request->price)*($request->quantity);
-        $receipt->price = $total;
+        $receipt->order_price = $total;
         $receipt->user_id = Auth::user()->id;
         $receipt->save();
 
         $report = new Report();
-        $report->name = $request->product;
-        $report->quantity = $request->quantity;
-        $report->status = $request->mode;
-        $report->delivery = $request->delivery;
+        $report->order_name = $request->product;
+        $report->order_quantity = $request->quantity;
+        $report->order_status = $request->mode;
+        $report->order_delivery = $request->delivery;
         $tot = ($request->price)*($request->quantity);
-        $report->price = $tot;
+        $report->order_price = $tot;
         $report->user_id =Auth::user()->id;
         $report->save();
 
-        $inv = Inventory::where('name',$request->product)->first();
+        $inv = Inventory::where('inventory_name',$request->product)->first();
         $quantity = $inv->quantity;
         $updateQuantity = $quantity - $request->quantity;
-        $update = Inventory::where('name',$request->product)->update(['quantity'=>($updateQuantity)]);
+        $update = Inventory::where('inventory_name',$request->product)->update(['inventory_quantity'=>($updateQuantity)]);
         return redirect(url('waiterOrder'))->with('success','Order Taken Successfully');
     }
     public function reverseOrder(Request $request){
-        $reverse = Inventory::where('name',$request->getProdName)->first();
+        $reverse = Inventory::where('inventory_name',$request->getProdName)->first();
         $quantity = $reverse->quantity;
         $updateQuantity = $quantity + $request->getQuantity;
-        $rev= Inventory::where('name',$request->getProdName)->update(['quantity'=>($updateQuantity)]);
+        $rev= Inventory::where('inventory_name',$request->getProdName)->update(['inventory_quantity'=>($updateQuantity)]);
         $revs= Order::where('id',$request->getProdId)->delete();
-        $revReceipt = Receipt::where('name',$request->getProdName)->delete();
-        $revReport =Report::where('name',$request->getProdName)->delete();
+        $revReceipt = Receipt::where('order_name',$request->getProdName)->delete();
+        $revReport =Report::where('order_name',$request->getProdName)->delete();
         return redirect()->back()->with('success','Order Successfully Reversed');
 
 
     }
     public function store(Request $request){
         $complete = Order::where('user_id',$request->getUserId)->delete();
-        $deleteReceipt = Receipt::where('name',$request->getPName)->delete();
-        $delReport = Report::where('name',$request->getPName)->delete();
+        $deleteReceipt = Receipt::where('order_name',$request->getPName)->delete();
+        $delReport = Report::where('order_name',$request->getPName)->delete();
         return redirect()->back()->with('success','Order Successfully Deleted');
     }
     public function waiterComplete(){

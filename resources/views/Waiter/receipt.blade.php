@@ -31,8 +31,8 @@
                                         <tbody>
                                         @foreach($reps as $rep)
                                         <tr>
-                                            <td class="col-md-9">Payment for <b>{{$rep->name}}</b></td>
-                                            <td class="col-md-3"><i class="fa fa-inr"></i>Ksh: {{$rep->price}}/-</td>
+                                            <td class="col-md-9">Payment for <b>{{$rep->order_name}}</b></td>
+                                            <td class="col-md-3"><i class="fa fa-inr"></i>Ksh: {{$rep->order_price}}/-</td>
                                         </tr>
                                         @endforeach
                                         <tr>
@@ -42,11 +42,11 @@
                                         </tr>
                                         </tbody>
                                     </table>
-                                    <i>Served By: <b>{{$name->user->name}}</b></i>
+                                    <i>Served By: <b>{{$name->user->user_name}}</b></i>
                                     <br>
-                                    <i>Mode: <b>{{$name->status}}</b></i>
+                                    <i>Mode: <b>{{$name->order_status}}</b></i>
                                     <br>
-                                    <i>Delivery Person: <b>{{$name->delivery}}</b></i>
+                                    <i>Delivery Person: <b>{{$name->order_delivery}}</b></i>
 
                                     <br>
                                     <br>

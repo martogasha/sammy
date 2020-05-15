@@ -15,13 +15,13 @@ class CreateReceiptsTable extends Migration
     {
         Schema::create('receipts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('desc')->nullable();
-            $table->mediumText('image')->nullable();
-            $table->integer('price')->nullable();
-            $table->string('status')->nullable();
-            $table->string('delivery')->nullable();
-            $table->integer('quantity');
+            $table->string('order_name');
+            $table->string('order_desc')->nullable();
+            $table->mediumText('order_image')->nullable();
+            $table->integer('order_price')->nullable();
+            $table->string('order_status')->nullable();
+            $table->string('order_delivery')->nullable();
+            $table->integer('order_quantity');
             $table->integer('user_id');
             $table->timestamps();
         });

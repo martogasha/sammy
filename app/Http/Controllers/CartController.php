@@ -12,7 +12,7 @@ class CartController extends Controller
 {
     public function index(){
         $carts = Cart::where('user_id',Auth::user()->id)->get();
-        $cartPrice = Cart::where('user_id',Auth::user()->id)->sum('price');
+        $cartPrice = Cart::where('user_id',Auth::user()->id)->sum('order_price');
 
         return view('Client.cart',[
             'carts'=>$carts,
@@ -22,18 +22,18 @@ class CartController extends Controller
     public function store(Request $request){
         $productId = Inventory::where('id',$request->productId)->first();
         $cart = Cart::create([
-            'name'=>$productId->name,
-            'desc'=>$productId->desc,
-            'image'=>$productId->image,
-            'price'=>$productId->price,
+            'order_name'=>$productId->inventory_name,
+            'order_desc'=>$productId->inventory_desc,
+            'order_image'=>$productId->inventory_image,
+            'order_price'=>$productId->inventory_price,
             'user_id'=>$request->user_id
 
         ]);
         $checkout = Checkout::create([
-            'name'=>$productId->name,
-            'desc'=>$productId->desc,
-            'image'=>$productId->image,
-            'price'=>$productId->price,
+            'order_name'=>$productId->inventory_name,
+            'order_desc'=>$productId->inventory_desc,
+            'order_image'=>$productId->inventory_image,
+            'order_price'=>$productId->inventory_price,
             'user_id'=>$request->user_id
         ]);
         return redirect(url('cart'))->with('success','Item added to cart successfully');

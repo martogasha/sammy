@@ -15,9 +15,9 @@ class CreateWaitersTable extends Migration
     {
         Schema::create('waiters', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->integer('role')->default(3);
+            $table->string('waiter_name');
+            $table->string('waiter_email');
+            $table->integer('waiter_role')->default(3);
             $table->string('password')->default(\Illuminate\Support\Facades\Hash::make('123456'));
             $table->timestamps();
         });

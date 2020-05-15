@@ -22,13 +22,13 @@ class TableController extends Controller
             }
         else{
             $table = Table::create([
-                'name'=>$request->input('name'),
-                'email'=>$request->input('email'),
-                'phone'=>$request->input('phone'),
-                'tableNo'=>$request->input('tableNo'),
-                'person'=>$request->input('person'),
-                'date'=>$request->input('date'),
-                'desc'=>$request->input('desc'),
+                'table_personName'=>$request->input('name'),
+                'table_email'=>$request->input('email'),
+                'table_personPhone'=>$request->input('phone'),
+                'table_tableNo'=>$request->input('tableNo'),
+                'table_person'=>$request->input('person'),
+                'table_date'=>$request->input('date'),
+                'table_desc'=>$request->input('desc'),
 
             ]);
             return redirect(url('/'))->with('success','Table Booked Successfully');

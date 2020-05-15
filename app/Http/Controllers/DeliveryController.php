@@ -16,9 +16,9 @@ class DeliveryController extends Controller
     }
     public function store(Request $request){
         $delivery = Delivery::create([
-            'first'=>$request->input('first'),
-            'last'=>$request->input('last'),
-            'phone'=>$request->input('phone'),
+            'delivery_firstName'=>$request->input('first'),
+            'delivery_lastName'=>$request->input('last'),
+            'delivery_phone'=>$request->input('phone'),
 
         ]);
         return redirect(url('delivery'))->with('success','Delivery Person Registered Successfully');

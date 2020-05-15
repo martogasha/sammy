@@ -13,10 +13,10 @@ class RegisterController extends Controller
     }
     public function register(Request $request){
         $user = User::create([
-            'name'=>$request->input('name'),
-            'email'=>$request->input('email'),
-            'phone'=>$request->input('phone'),
-            'location'=>$request->input('location'),
+            'user_name'=>$request->input('name'),
+            'user_email'=>$request->input('email'),
+            'user_phone'=>$request->input('phone'),
+            'user_location'=>$request->input('location'),
             'password'=>Hash::make($request->input('password')),
 
         ]);

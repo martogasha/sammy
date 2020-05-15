@@ -331,12 +331,7 @@
             <h1 class="menu-page-header">Page Header</h1>
             <ul class="main-menu">
                 <li class="sub-header"><span>Menu</span></li>
-                <li class="selected has-menu"><a href="{{url('waiter')}}">
-                        <div class="icon-w">
-                            <div class="os-icon os-icon-layout"></div>
-                        </div>
-                        <span>Inventory</span></a>
-                </li>
+
                 <li class="selected has-menu"><a href="{{url('menu')}}">
                         <div class="icon-w">
                             <div class="os-icon os-icon-layout"></div>

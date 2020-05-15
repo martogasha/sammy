@@ -64,7 +64,7 @@
                     <ul class="order_details">
                         <li class="order_header">Product<span>Total</span></li>
                         @foreach($checkouts as $checkout)
-                        <li>{{$checkout->name}}<span>Ksh: {{$checkout->price}}</span></li>
+                        <li>{{$checkout->order_name}}<span>Ksh: {{$checkout->order_price}}</span></li>
                         @endforeach
                         <li class="total">Total<span>Ksh: {{$check}}</span></li>
                     </ul>

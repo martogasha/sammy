@@ -28,18 +28,18 @@
                                 <tbody>
                                 @foreach($prods as $prod)
                                 <tr>
-                                    <td class="nowrap">{{$prod->name}}</td>
-                                    <td class="text-right">Ksh: {{$prod->price}}</td>
-                                    <th class="text-right">{{$prod->quantity}}</th>
-                                    <th class="text-right" id="totalPrice">{{($prod->quantity)*($prod->price)}}</th>
-                                    <th class="text-right">{{$prod->status}}</th>
+                                    <td class="nowrap">{{$prod->order_name}}</td>
+                                    <td class="text-right">Ksh: {{$prod->order_price}}</td>
+                                    <th class="text-right">{{$prod->order_quantity}}</th>
+                                    <th class="text-right" id="totalPrice">{{($prod->order_quantity)*($prod->order_price)}}</th>
+                                    <th class="text-right">{{$prod->order_status}}</th>
 
                                     <td class="text-center">
                                         <form action="{{url('reverseOrder')}}" method="post">
                                             @csrf
                                         <input type="hidden" name="getProdId" id="getProdId" value="{{$prod->id}}">
-                                            <input type="hidden" name="getQuantity" value="{{$prod->quantity}}">
-                                            <input type="hidden" name="getProdName" id="getProdId" value="{{$prod->name}}">
+                                            <input type="hidden" name="getQuantity" value="{{$prod->order_quantity}}">
+                                            <input type="hidden" name="getProdName" id="getProdId" value="{{$prod->order_name}}">
 
 
                                             <button type="submit" class="btn btn-secondary">Reverse Order</button>

@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Delivery extends Model
 {
     protected $fillable=[
-        'first','last','phone'
+        'delivery_firstName','delivery_lastName','delivery_phone'
     ];
 }

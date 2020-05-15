@@ -9,12 +9,12 @@
                     @foreach($products as $product)
                     <div class="col-sm-6">
                         <div class="single_shop">
-                            <img src="{{asset('uploads/cafe/'. $product->image)}}" alt="">
+                            <img src="{{asset('uploads/cafe/'. $product->inventory_image)}}" alt="">
                             <div class="shop_content">
-                                <h4>{{$product->name}}</h4>
-                                <p>{{$product->desc}}</p>
+                                <h4>{{$product->inventory_name}}</h4>
+                                <p>{{$product->inventory_desc}}</p>
                                 <div class="shop_rate">
-                                    <span>Ksh: {{$product->price}}</span>
+                                    <span>Ksh: {{$product->inventory_price}}</span>
                                     <form action="{{route('cart.store')}}" id="cartForm" method="post">
                                         @csrf
                                         <input type="hidden" name="productId" value="{{$product->id}}">

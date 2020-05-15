@@ -126,7 +126,7 @@
                 <div class="logged-user-i">
                     <div class="avatar-w"><img alt="" src="asset/img/avatar1.jpg"></div>
                     <div class="logged-user-info-w">
-                        <div class="logged-user-name">{{\Illuminate\Support\Facades\Auth::user()->name}}</div>
+                        <div class="logged-user-name">{{\Illuminate\Support\Facades\Auth::user()->user_name}}</div>
                         <div class="logged-user-role">Administrator</div>
                     </div>
                     <div class="logged-user-toggler-arrow">
@@ -136,7 +136,7 @@
                         <div class="logged-user-avatar-info">
                             <div class="avatar-w"><img alt="" src="asset/img/avatar1.jpg"></div>
                             <div class="logged-user-info-w">
-                                <div class="logged-user-name">{{\Illuminate\Support\Facades\Auth::user()->name}}</div>
+                                <div class="logged-user-name">{{\Illuminate\Support\Facades\Auth::user()->user_name}}</div>
                                 <div class="logged-user-role">Administrator</div>
                             </div>
                         </div>
@@ -167,7 +167,7 @@
             <h1 class="menu-page-header">Page Header</h1>
             <ul class="main-menu">
                 <li class="sub-header"><span>Menu</span></li>
-                <li class="selected has-menu"><a href="{{url('order')}}">
+                <li class="selected has-menu"><a href="{{url('admin')}}">
                         <div class="icon-w">
                             <div class="os-icon os-icon-layout"></div>
                         </div>

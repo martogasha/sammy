@@ -17,17 +17,17 @@ class InventoryController extends Controller
     }
     public function store(Request $request){
            $product = new Inventory();
-           $product->name = $request->input('name');
-        $product->desc = $request->input('desc');
-        $product->price = $request->input('price');
-        $product->quantity = $request->input('quantity');
+           $product->inventory_name = $request->input('name');
+        $product->inventory_desc = $request->input('desc');
+        $product->inventory_price = $request->input('price');
+        $product->inventory_quantity = $request->input('quantity');
 
 
         $file = $request->file('image');
         $extension = $file->getClientOriginalName();
         $filename = time() . '.' . $extension;
         $file->move('uploads/cafe/', $filename);
-        $product->image = $filename;
+        $product->inventory_image = $filename;
 
         $product->save();
 

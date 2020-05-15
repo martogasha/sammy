@@ -13,21 +13,20 @@ class LoginController extends Controller
     }
     public function login(Request $request)
     {
-
         if (Auth::attempt([
-            'email' => $request->email,
+            'user_email' => $request->email,
             'password' => $request->password,
 
         ])) {
-            $user = User::where('email', $request->email)->first();
+            $user = User::where('user_email', $request->email)->first();
 
-            if ($user->role == 1) {
+            if ($user->user_role == 1) {
                 return redirect(url('admin'));
 
-            } elseif ($user->role == 2) {
+            } elseif ($user->user_role == 2) {
                 return redirect(url('/'));
             }
-            elseif ($user->role ==3){
+            elseif ($user->user_role ==3){
                 return redirect(url('waiter'));
             }
         } else {

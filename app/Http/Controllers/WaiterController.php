@@ -22,7 +22,7 @@ class WaiterController extends Controller
     public function waiterTable($id){
         $reports = Report::where('user_id',$id)->get();
         $name = Report::where('user_id',$id)->first();
-        $rep = Report::where('user_id',$id)->sum('price');
+        $rep = Report::where('user_id',$id)->sum('order_price');
         return view('Admin.waiterTable',[
             'reports'=>$reports,
             'rep'=>$rep,

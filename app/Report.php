@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Report extends Model
 {
     protected $fillable=[
-        'name','price','quantity','user_id','status','delivery'
+        'order_name','order_price','order_quantity','user_id','order_status','order_delivery'
     ];
 
   public function user(){

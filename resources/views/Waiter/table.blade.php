@@ -31,12 +31,12 @@
                                 @foreach($prods as $prod)
 
                                     <tr>
-                                    <td class="nowrap">{{$prod->name}}</td>
-                                    <td>{{$prod->email}}</td>
-                                        <td>{{$prod->date}}</td>
-                                        <td>{{$prod->tableNo}}</td>
-                                        <td>{{$prod->person}}</td>
-                                        <td>{{$prod->desc}}</td>
+                                    <td class="nowrap">{{$prod->table_personName}}</td>
+                                    <td>{{$prod->table_email}}</td>
+                                        <td>{{$prod->table_date}}</td>
+                                        <td>{{$prod->table_tableNo}}</td>
+                                        <td>{{$prod->table_person}}</td>
+                                        <td>{{$prod->table_desc}}</td>
 
                                         <td class="text-center">
                                         <form action="{{url('tableDelete')}}" method="post">

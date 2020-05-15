@@ -66,11 +66,11 @@
                 <div class="special_food_slider">
                     @foreach($products as $product)
                     <div class="singl_special_slider wow fadeIn" data-wow-delay="0">
-                        <img src="{{asset('uploads/cafe/'. $product->image)}}" alt="">
+                        <img src="{{asset('uploads/cafe/'. $product->inventory_image)}}" alt="">
                         <div class="special_content">
-                            <h4>{{$product->name}}</h4>
-                            <p>{{$product->desc}}</p>
-                            <span>Ksh: {{$product->price}}</span>
+                            <h4>{{$product->inventory_name}}</h4>
+                            <p>{{$product->inventory_desc}}</p>
+                            <span>Ksh: {{$product->inventory_price}}</span>
                         </div>
                     </div>
                     @endforeach

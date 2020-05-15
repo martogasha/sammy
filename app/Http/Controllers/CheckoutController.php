@@ -12,7 +12,7 @@ class CheckoutController extends Controller
 {
     public function index(){
         $checkouts = Checkout::where('user_id',Auth::user()->id)->get();
-        $check = Checkout::where('user_id',Auth::user()->id)->sum('price');
+        $check = Checkout::where('user_id',Auth::user()->id)->sum('order_price');
         return view('Client.checkout',[
             'checkouts'=>$checkouts,
             'check'=>$check

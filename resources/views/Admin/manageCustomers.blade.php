@@ -24,10 +24,10 @@
                                 <tbody>
                                 @foreach($products as $product)
                                 <tr>
-                                    <td>{{$product->name}}</td>
-                                    <td class="nowrap">{{$product->email}}</td>
-                                    <td>{{$product->phone}}</td>
-                                    <td>{{$product->location}}</td>
+                                    <td>{{$product->user_name}}</td>
+                                    <td class="nowrap">{{$product->user_email}}</td>
+                                    <td>{{$product->user_phone}}</td>
+                                    <td>{{$product->user_location}}</td>
                                 </tr>
                                 @endforeach
                                 </tbody>

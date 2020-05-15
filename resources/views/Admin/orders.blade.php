@@ -25,15 +25,15 @@
                                 <tbody>
                                 @foreach($products as $product)
                                 <tr>
-                                    <td>{{$product->user->name}}</td>
-                                    <td class="nowrap">{{$product->name}}</td>
+                                    <td>{{$product->user->user_name}}</td>
+                                    <td class="nowrap">{{$product->order_name}}</td>
                                     <td>
                                         <div class="cell-image-list">
                                             <div class="cell-img"
                                                  style="background-image: url({{asset('uploads/cafe/'.$product->image)}})"></div>
                                         </div>
                                     </td>
-                                    <td class="text-right">Ksh: {{$product->sum('price')}}</td>
+                                    <td class="text-right">Ksh: {{$product->sum('order_price')}}</td>
                                     <td class="text-center">
                                         <form action="{{route('order.store')}}" method="post">
                                             @csrf
